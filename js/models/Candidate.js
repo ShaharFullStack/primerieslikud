@@ -1,5 +1,5 @@
-import { initials, avatarGradient } from '../utils/format.js?v=2';
-import { commonsFilePath } from '../utils/wikimedia.js?v=2';
+import { initials, avatarGradient } from '../utils/format.js?v=3';
+import { commonsFilePath } from '../utils/wikimedia.js?v=3';
 
 /**
  * A single candidate across any of the four ballots (national list,

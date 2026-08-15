@@ -1,13 +1,13 @@
-import { DataService } from './services/DataService.js?v=2';
-import { StorageService } from './services/StorageService.js?v=2';
-import { MarkingService, NATIONAL_MAX } from './services/MarkingService.js?v=2';
-import { FilterService } from './services/FilterService.js?v=2';
-import { renderTabsNav } from './components/TabsNavComponent.js?v=2';
-import { TabViewRenderer } from './components/TabViewComponent.js?v=2';
-import { renderDetailModalBody } from './components/DetailModalComponent.js?v=2';
-import { renderBallotBody, renderPrintableBallot, ballotAsText } from './components/BallotModalComponent.js?v=2';
-import { ToastComponent } from './components/ToastComponent.js?v=2';
-import { canNativeShare, shareNative, shareToTwitter, shareToFacebook, shareToInstagram } from './components/ShareComponent.js?v=2';
+import { DataService } from './services/DataService.js?v=3';
+import { StorageService } from './services/StorageService.js?v=3';
+import { MarkingService, NATIONAL_MAX } from './services/MarkingService.js?v=3';
+import { FilterService } from './services/FilterService.js?v=3';
+import { renderTabsNav } from './components/TabsNavComponent.js?v=3';
+import { TabViewRenderer } from './components/TabViewComponent.js?v=3';
+import { renderDetailModalBody } from './components/DetailModalComponent.js?v=3';
+import { renderBallotBody, renderPrintableBallot, ballotAsText } from './components/BallotModalComponent.js?v=3';
+import { ToastComponent } from './components/ToastComponent.js?v=3';
+import { canNativeShare, shareNative, shareToTwitter, shareToFacebook, shareToInstagram } from './components/ShareComponent.js?v=3';
 
 const appState = {
   activeTab: 'all',

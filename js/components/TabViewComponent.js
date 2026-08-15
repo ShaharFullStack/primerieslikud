@@ -1,7 +1,7 @@
-import { escapeHtml } from '../utils/format.js?v=2';
-import { renderGrid } from './CardComponent.js?v=2';
-import { TABS } from './TabsNavComponent.js?v=2';
-import { NATIONAL_MAX } from '../services/MarkingService.js?v=2';
+import { escapeHtml } from '../utils/format.js?v=3';
+import { renderGrid } from './CardComponent.js?v=3';
+import { TABS } from './TabsNavComponent.js?v=3';
+import { NATIONAL_MAX } from '../services/MarkingService.js?v=3';
 
 export const QUICK_TAGS = ['שרים וח"כים', 'בכירים', 'נשים', 'מועמדים חדשים'];
 

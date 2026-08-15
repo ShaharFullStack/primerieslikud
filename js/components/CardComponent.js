@@ -1,4 +1,4 @@
-import { escapeHtml, shortLabel } from '../utils/format.js?v=2';
+import { escapeHtml, shortLabel } from '../utils/format.js?v=3';
 
 const POSITION_ICONS = { security: '🛡️', economy: '💰', justice: '⚖️' };
 const POSITION_LABELS = { security: 'ביטחון', economy: 'כלכלה', justice: 'רפורמה משפטית' };

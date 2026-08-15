@@ -1,4 +1,4 @@
-import { ballotAsText } from './BallotModalComponent.js?v=2';
+import { ballotAsText } from './BallotModalComponent.js?v=3';
 
 /**
  * Social sharing. Only X/Twitter has a reliable web "intent" URL that
@@ -11,9 +11,11 @@ import { ballotAsText } from './BallotModalComponent.js?v=2';
  * straight to the Instagram app via the OS share sheet instead.
  */
 
+const APP_SHARE_URL = 'https://bit.ly/4zlIZoU';
+
 function shareText(markingService) {
   const { text } = ballotAsText(markingService);
-  return text;
+  return `${text}\n\n🗳️ הרכיבו גם אתם את הנבחרת שלכם לפריימריז הליכוד 2026:\n${APP_SHARE_URL}`;
 }
 
 export function canNativeShare() {
@@ -32,8 +34,7 @@ export function shareToFacebook(markingService, toast) {
   // flag and silently block the popup — that's what broke this: the old
   // version awaited navigator.clipboard.writeText() first, which pushed
   // window.open() a tick later and got it treated as an unrequested popup.
-  const pageUrl = window.location.href;
-  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
+  const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(APP_SHARE_URL)}`;
   window.open(url, '_blank', 'noopener,noreferrer,width=600,height=500');
 
   const text = shareText(markingService);
@@ -48,7 +49,7 @@ export async function shareToInstagram(markingService, toast) {
 
   if (canNativeShare()) {
     try {
-      await navigator.share({ title: 'פתק ההצבעה שלי — פריימריז הליכוד 2026', text, url: window.location.href });
+      await navigator.share({ title: 'פתק ההצבעה שלי — פריימריז הליכוד 2026', text, url: APP_SHARE_URL });
       return;
     } catch (e) {
       // user cancelled the native share sheet, or it isn't fully supported — fall through to clipboard
@@ -66,7 +67,7 @@ export async function shareToInstagram(markingService, toast) {
 export async function shareNative(markingService, toast) {
   const text = shareText(markingService);
   try {
-    await navigator.share({ title: 'פתק ההצבעה שלי — פריימריז הליכוד 2026', text, url: window.location.href });
+    await navigator.share({ title: 'פתק ההצבעה שלי — פריימריז הליכוד 2026', text, url: APP_SHARE_URL });
   } catch (e) {
     // user cancelled — no toast needed
   }
