@@ -1,4 +1,4 @@
-import { ballotAsText } from './BallotModalComponent.js';
+import { ballotAsText } from './BallotModalComponent.js?v=2';
 
 /**
  * Social sharing. Only X/Twitter has a reliable web "intent" URL that
@@ -26,17 +26,21 @@ export function shareToTwitter(markingService) {
   window.open(url, '_blank', 'noopener,noreferrer,width=600,height=500');
 }
 
-export async function shareToFacebook(markingService, toast) {
-  const text = shareText(markingService);
-  try {
-    await navigator.clipboard.writeText(text);
-    toast.show('הפתק הועתק ללוח — הדביקו אותו בתיבת השיתוף שנפתחת בפייסבוק');
-  } catch (e) {
-    toast.show('פותח פייסבוק לשיתוף...');
-  }
+export function shareToFacebook(markingService, toast) {
+  // window.open() must run synchronously, in the same tick as the click, or
+  // Safari/iOS (and Chrome's stricter heuristics) drop the "user activation"
+  // flag and silently block the popup — that's what broke this: the old
+  // version awaited navigator.clipboard.writeText() first, which pushed
+  // window.open() a tick later and got it treated as an unrequested popup.
   const pageUrl = window.location.href;
   const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
   window.open(url, '_blank', 'noopener,noreferrer,width=600,height=500');
+
+  const text = shareText(markingService);
+  navigator.clipboard
+    .writeText(text)
+    .then(() => toast.show('הפתק הועתק ללוח — הדביקו אותו בתיבת השיתוף שנפתחת בפייסבוק'))
+    .catch(() => toast.show('פותח פייסבוק לשיתוף...'));
 }
 
 export async function shareToInstagram(markingService, toast) {

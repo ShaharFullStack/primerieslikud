@@ -1,4 +1,4 @@
-import { Candidate } from '../models/Candidate.js';
+import { Candidate } from '../models/Candidate.js?v=2';
 
 /**
  * Loads the candidate roster and district/quota metadata from static JSON
@@ -14,8 +14,8 @@ export class DataService {
 
   async load() {
     const [candidatesRaw, meta] = await Promise.all([
-      fetch(`${this.basePath}/candidates.json`).then((r) => r.json()),
-      fetch(`${this.basePath}/meta.json`).then((r) => r.json()),
+      fetch(`${this.basePath}/candidates.json?v=2`).then((r) => r.json()),
+      fetch(`${this.basePath}/meta.json?v=2`).then((r) => r.json()),
     ]);
 
     const candidates = candidatesRaw.map((raw) => new Candidate(raw));

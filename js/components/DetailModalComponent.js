@@ -1,6 +1,6 @@
-import { escapeHtml } from '../utils/format.js';
-import { NATIONAL_MAX } from '../services/MarkingService.js';
-import { groupBadgeLabel, POSITION_ICONS, POSITION_LABELS } from './CardComponent.js';
+import { escapeHtml } from '../utils/format.js?v=2';
+import { NATIONAL_MAX } from '../services/MarkingService.js?v=2';
+import { groupBadgeLabel, POSITION_ICONS, POSITION_LABELS } from './CardComponent.js?v=2';
 
 function imageHtml(candidate) {
   if (candidate.imageUrl) {

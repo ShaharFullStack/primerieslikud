@@ -1,5 +1,5 @@
-import { escapeHtml } from '../utils/format.js';
-import { NATIONAL_MAX } from '../services/MarkingService.js';
+import { escapeHtml } from '../utils/format.js?v=2';
+import { NATIONAL_MAX } from '../services/MarkingService.js?v=2';
 
 function ballotItem(candidate, index) {
   const sublabel = candidate.group === 'reserved' ? ` · משבצת: ${escapeHtml(candidate.groupLabel)}` : '';
