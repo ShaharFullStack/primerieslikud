@@ -7,6 +7,7 @@ import { TabViewRenderer } from './components/TabViewComponent.js';
 import { renderDetailModalBody } from './components/DetailModalComponent.js';
 import { renderBallotBody, renderPrintableBallot, ballotAsText } from './components/BallotModalComponent.js';
 import { ToastComponent } from './components/ToastComponent.js';
+import { canNativeShare, shareNative, shareToTwitter, shareToFacebook, shareToInstagram } from './components/ShareComponent.js';
 
 const appState = {
   activeTab: 'all',
@@ -30,6 +31,7 @@ const el = {
   ballotModal: document.getElementById('ballotModal'),
   ballotContainer: document.getElementById('ballotContainer'),
   printArea: document.getElementById('printArea'),
+  shareNativeBtn: document.getElementById('shareNativeBtn'),
   toast: document.getElementById('toast'),
   toastMsg: document.getElementById('toastMsg'),
 };
@@ -50,6 +52,8 @@ async function init() {
   renderShellAndResults();
   updateTracker();
   wireEvents();
+
+  if (canNativeShare()) el.shareNativeBtn.style.display = '';
 }
 
 function renderTabsNavUI() {
@@ -159,6 +163,32 @@ function copyBallotToClipboard() {
     .catch(() => toast.show('שגיאה בהעתקה ללוח'));
 }
 
+function hasNothingToShare() {
+  const { isEmpty } = ballotAsText(markingService);
+  if (isEmpty) toast.show('סמנ/י קודם מועמדים כ"בטוח/ה מצביע/ה" כדי לשתף את הבחירה שלך');
+  return isEmpty;
+}
+
+function handleShareNative() {
+  if (hasNothingToShare()) return;
+  shareNative(markingService, toast);
+}
+
+function handleShareTwitter() {
+  if (hasNothingToShare()) return;
+  shareToTwitter(markingService);
+}
+
+function handleShareFacebook() {
+  if (hasNothingToShare()) return;
+  shareToFacebook(markingService, toast);
+}
+
+function handleShareInstagram() {
+  if (hasNothingToShare()) return;
+  shareToInstagram(markingService, toast);
+}
+
 function resetSelections() {
   if (!markingService.hasAnyMarking()) return;
   if (confirm('האם לאפס את כל הסימונים שביצעת (ירוק/צהוב/אדום) בכל הרשימות?')) {
@@ -222,6 +252,18 @@ function wireEvents() {
         break;
       case 'print':
         printBallot();
+        break;
+      case 'share-native':
+        handleShareNative();
+        break;
+      case 'share-twitter':
+        handleShareTwitter();
+        break;
+      case 'share-facebook':
+        handleShareFacebook();
+        break;
+      case 'share-instagram':
+        handleShareInstagram();
         break;
       default:
         break;

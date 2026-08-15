@@ -276,6 +276,19 @@
     .ballot-sub-head { font-size: 13px; font-weight: 800; color: var(--text-main); margin: 14px 0 8px; display: flex; align-items: center; gap: 6px; }
     .ballot-empty-note { font-size: 12.5px; color: var(--text-faint); padding: 6px 2px 14px; }
 
+    .share-row { margin-top: 8px; padding-top: 16px; border-top: 1px dashed #e2e8f0; }
+    .share-label { font-size: 12.5px; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 8px; }
+    .share-buttons { display: flex; gap: 8px; flex-wrap: wrap; }
+    .btn-share { color: white; border: none; }
+    .btn-share.share-native { background: var(--primary); }
+    .btn-share.share-native:hover { background: var(--primary-dark); }
+    .btn-share.share-twitter { background: #0f1419; }
+    .btn-share.share-twitter:hover { background: #272c30; }
+    .btn-share.share-facebook { background: #1877f2; }
+    .btn-share.share-facebook:hover { background: #1461c9; }
+    .btn-share.share-instagram { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af, #515bd4); }
+    .btn-share.share-instagram:hover { filter: brightness(1.08); }
+
     /* candidate detail modal */
     .detail-top { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 14px; }
     .detail-photo { width: 84px; height: 84px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: #e2e8f0; }
