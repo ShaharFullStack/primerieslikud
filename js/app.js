@@ -1,0 +1,227 @@
+import { DataService } from './services/DataService.js';
+import { StorageService } from './services/StorageService.js';
+import { MarkingService, NATIONAL_MAX } from './services/MarkingService.js';
+import { FilterService } from './services/FilterService.js';
+import { renderTabsNav } from './components/TabsNavComponent.js';
+import { TabViewRenderer } from './components/TabViewComponent.js';
+import { renderDetailModalBody } from './components/DetailModalComponent.js';
+import { renderBallotBody, ballotAsText } from './components/BallotModalComponent.js';
+import { ToastComponent } from './components/ToastComponent.js';
+
+const appState = {
+  activeTab: 'all',
+  searchQuery: '',
+  tagFilter: 'all',
+  showMarkedOnly: false,
+};
+
+let candidates, byId, districtsMeta, reservedMeta;
+let markingService, filterService, tabViewRenderer, toast;
+
+const el = {
+  tabsNav: document.getElementById('tabsNav'),
+  tabContent: document.getElementById('tab-content'),
+  selectedCountDisplay: document.getElementById('selectedCountDisplay'),
+  progressBar: document.getElementById('progressBar'),
+  miniStats: document.getElementById('miniStats'),
+  viewSelectedBtn: document.getElementById('viewSelectedBtn'),
+  detailModal: document.getElementById('detailModal'),
+  detailModalBody: document.getElementById('detailModalBody'),
+  ballotModal: document.getElementById('ballotModal'),
+  ballotContainer: document.getElementById('ballotContainer'),
+  toast: document.getElementById('toast'),
+  toastMsg: document.getElementById('toastMsg'),
+};
+
+async function init() {
+  const data = await new DataService('js/data').load();
+  candidates = data.candidates;
+  byId = data.byId;
+  districtsMeta = data.districtsMeta;
+  reservedMeta = data.reservedMeta;
+
+  markingService = new MarkingService(candidates, new StorageService());
+  filterService = new FilterService();
+  tabViewRenderer = new TabViewRenderer({ candidates, markingService, filterService, districtsMeta, reservedMeta });
+  toast = new ToastComponent(el.toast, el.toastMsg);
+
+  renderTabsNavUI();
+  renderShellAndResults();
+  updateTracker();
+  wireEvents();
+}
+
+function renderTabsNavUI() {
+  el.tabsNav.innerHTML = renderTabsNav(candidates, markingService, appState.activeTab);
+}
+
+function renderShellAndResults() {
+  el.tabContent.innerHTML = tabViewRenderer.renderShell(appState.activeTab, appState);
+  tabViewRenderer.updateResults(el.tabContent, appState.activeTab, appState);
+}
+
+function refreshResultsOnly() {
+  tabViewRenderer.updateResults(el.tabContent, appState.activeTab, appState);
+}
+
+function updateTracker() {
+  const nationalGreen = markingService.greenCountForGroups(['national']);
+  el.selectedCountDisplay.textContent = `${nationalGreen} / ${NATIONAL_MAX}`;
+  el.selectedCountDisplay.classList.toggle('full', nationalGreen === NATIONAL_MAX);
+  el.progressBar.style.width = `${(nationalGreen / NATIONAL_MAX) * 100}%`;
+
+  const districtsFilled = districtsMeta.filter((d) => markingService.greenCandidatesForCapKey(`district::${d.name}`).length > 0).length;
+  const reservedFilled = reservedMeta.filter((r) => markingService.greenCandidatesForCapKey(`reserved::${r.category}`).length > 0).length;
+
+  el.miniStats.innerHTML = `
+    <span class="mini-stat ${districtsFilled > 0 ? 'done' : ''}">מחוז: ${districtsFilled > 0 ? '✓ נבחר' : 'טרם נבחר'}</span>
+    <span class="mini-stat ${reservedFilled > 0 ? 'done' : ''}">משבצות: ${reservedFilled}/${reservedMeta.length}</span>
+  `;
+}
+
+function switchTab(tabId) {
+  appState.activeTab = tabId;
+  appState.tagFilter = 'all';
+  appState.showMarkedOnly = false;
+  el.viewSelectedBtn.innerHTML = markedOnlyLabel(false);
+  renderTabsNavUI();
+  renderShellAndResults();
+}
+
+function markedOnlyLabel(active) {
+  const eyeSvg = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  return active ? `${eyeSvg} הצג את כולם` : `${eyeSvg} הצג מסומנים בלבד`;
+}
+
+function handleMark(id, value) {
+  const result = markingService.setMarking(id, value);
+  if (!result.ok) {
+    if (result.reason) toast.show(result.reason);
+    return;
+  }
+  renderTabsNavUI();
+  refreshResultsOnly();
+  updateTracker();
+
+  if (el.detailModal.classList.contains('active')) {
+    const openId = Number(el.detailModal.dataset.openId);
+    if (openId === id) openDetailModal(id);
+  }
+}
+
+function openDetailModal(id) {
+  const candidate = byId.get(id);
+  if (!candidate) return;
+  el.detailModal.dataset.openId = String(id);
+  el.detailModalBody.innerHTML = renderDetailModalBody(candidate, markingService.markingOf(id));
+  el.detailModal.classList.add('active');
+}
+
+function closeDetailModal() {
+  el.detailModal.classList.remove('active');
+}
+
+function openBallotModal() {
+  el.ballotContainer.innerHTML = renderBallotBody(markingService);
+  el.ballotModal.classList.add('active');
+}
+
+function closeBallotModal() {
+  el.ballotModal.classList.remove('active');
+}
+
+function copyBallotToClipboard() {
+  const { text, isEmpty } = ballotAsText(markingService);
+  if (isEmpty) {
+    toast.show('אין מועמדים מסומנים להעתקה');
+    return;
+  }
+  navigator.clipboard
+    .writeText(text)
+    .then(() => toast.show('הרשימה הועתקה ללוח בהצלחה!'))
+    .catch(() => toast.show('שגיאה בהעתקה ללוח'));
+}
+
+function resetSelections() {
+  if (!markingService.hasAnyMarking()) return;
+  if (confirm('האם לאפס את כל הסימונים שביצעת (ירוק/צהוב/אדום) בכל הרשימות?')) {
+    markingService.resetAll();
+    appState.showMarkedOnly = false;
+    el.viewSelectedBtn.innerHTML = markedOnlyLabel(false);
+    renderTabsNavUI();
+    renderShellAndResults();
+    updateTracker();
+    toast.show('כל הסימונים אופסו בהצלחה');
+  }
+}
+
+function toggleMarkedOnly() {
+  appState.showMarkedOnly = !appState.showMarkedOnly;
+  el.viewSelectedBtn.innerHTML = markedOnlyLabel(appState.showMarkedOnly);
+  refreshResultsOnly();
+}
+
+function wireEvents() {
+  document.body.addEventListener('click', (e) => {
+    const actionEl = e.target.closest('[data-action]');
+    if (!actionEl) return;
+    const { action } = actionEl.dataset;
+
+    switch (action) {
+      case 'switch-tab':
+        switchTab(actionEl.dataset.tab);
+        break;
+      case 'open-detail':
+        openDetailModal(Number(actionEl.dataset.id));
+        break;
+      case 'mark':
+        handleMark(Number(actionEl.dataset.id), actionEl.dataset.value);
+        break;
+      case 'set-tag-filter':
+        appState.tagFilter = actionEl.dataset.tag;
+        renderShellAndResults();
+        break;
+      case 'set-group-filter':
+        appState.tagFilter = actionEl.dataset.group;
+        renderShellAndResults();
+        break;
+      case 'toggle-marked-only':
+        toggleMarkedOnly();
+        break;
+      case 'open-ballot':
+        openBallotModal();
+        break;
+      case 'close-detail-modal':
+        closeDetailModal();
+        break;
+      case 'close-ballot-modal':
+        closeBallotModal();
+        break;
+      case 'copy-ballot':
+        copyBallotToClipboard();
+        break;
+      case 'reset-selections':
+        resetSelections();
+        break;
+      case 'print':
+        window.print();
+        break;
+      default:
+        break;
+    }
+  });
+
+  document.body.addEventListener('input', (e) => {
+    if (e.target.id === 'searchInput') {
+      appState.searchQuery = e.target.value;
+      refreshResultsOnly();
+    }
+  });
+
+  window.addEventListener('click', (e) => {
+    if (e.target === el.ballotModal) closeBallotModal();
+    if (e.target === el.detailModal) closeDetailModal();
+  });
+}
+
+document.addEventListener('DOMContentLoaded', init);
