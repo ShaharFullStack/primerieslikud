@@ -54,7 +54,7 @@ export function renderPrintableBallot(markingService) {
   let html = `<div class="print-ballot-section">
     <h3>הרשימה הארצית (${nationalPicks.length}/${NATIONAL_MAX})</h3>
     <ol class="print-ballot-list">
-      ${nationalPicks.map((c) => `<li>${escapeHtml(c.name)}${c.group === 'reserved' ? ` <span class="print-sub">(משבצת: ${escapeHtml(c.groupLabel)})</span>` : ''}</li>`).join('')}
+      ${nationalPicks.map((c) => `<li>${escapeHtml(c.name)}</li>`).join('')}
     </ol>
   </div>`;
 
@@ -62,7 +62,7 @@ export function renderPrintableBallot(markingService) {
     html += `<div class="print-ballot-section">
       <h3>נציג/ה מחוזי/ת</h3>
       <ol class="print-ballot-list">
-        ${districtPicks.map((c) => `<li>${escapeHtml(c.name)} <span class="print-sub">(${escapeHtml(c.groupLabel)})</span></li>`).join('')}
+        ${districtPicks.map((c) => `<li>${escapeHtml(c.name)}</li>`).join('')}
       </ol>
     </div>`;
   }
@@ -74,9 +74,7 @@ export function ballotAsText(markingService) {
   const { nationalPicks, districtPicks } = picks(markingService);
 
   let text = 'פתק ההצבעה שלי — פריימריז הליכוד 2026\n\n';
-  text +=
-    `הרשימה הארצית (${nationalPicks.length}/${NATIONAL_MAX}):\n` +
-    nationalPicks.map((c, i) => `${i + 1}. ${c.name} (${c.role}${c.group === 'reserved' ? ` · משבצת: ${c.groupLabel}` : ''})`).join('\n');
-  text += `\n\nנציג/ה מחוזי/ת:\n` + (districtPicks.length ? districtPicks.map((c) => `${c.name} — ${c.groupLabel}`).join('\n') : 'לא נבחר');
+  text += `הרשימה הארצית (${nationalPicks.length}/${NATIONAL_MAX}):\n` + nationalPicks.map((c, i) => `${i + 1}. ${c.name}`).join('\n');
+  text += `\n\nנציג/ה מחוזי/ת:\n` + (districtPicks.length ? districtPicks.map((c) => c.name).join('\n') : 'לא נבחר');
   return { text, isEmpty: nationalPicks.length === 0 && districtPicks.length === 0 };
 }
