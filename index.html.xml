@@ -1,0 +1,2197 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>פריימריז הליכוד 2026 — בחירת 12 מועמדים</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0052b4;
+      --primary-dark: #00367a;
+      --primary-light: #e8f1fd;
+      --accent: #ff9900;
+      --accent-light: #fff5e6;
+      --success: #10b981;
+      --success-dark: #059669;
+      --danger: #ef4444;
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --bg-page: #f1f5f9;
+      --bg-card: #ffffff;
+      --border-color: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.07);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      --radius: 12px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Assistant', 'Rubik', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.5;
+      padding-bottom: 120px;
+    }
+
+    header {
+      background: linear-gradient(135deg, #002d66 0%, #0052b4 50%, #0284c7 100%);
+      color: white;
+      padding: 32px 20px 24px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      background: white;
+      color: var(--primary);
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 24px;
+      box-shadow: var(--shadow-md);
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .brand-text h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    .brand-text p {
+      font-size: 14px;
+      color: #bae6fd;
+      font-weight: 400;
+    }
+
+    .rules-badge {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 8px 16px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      backdrop-filter: blur(8px);
+    }
+
+    .sticky-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      padding: 12px 20px;
+    }
+
+    .sticky-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .tracker-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .counter-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .counter-value {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 4px 14px;
+      border-radius: 8px;
+      border: 1px solid #bfdbfe;
+      min-width: 80px;
+      text-align: center;
+    }
+
+    .counter-value.full {
+      background: #dcfce7;
+      color: #15803d;
+      border-color: #86efac;
+    }
+
+    .progress-wrapper {
+      flex: 1;
+      max-width: 240px;
+      background: #e2e8f0;
+      height: 10px;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #10b981);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .tracker-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: #10b981;
+      color: white;
+    }
+    .btn-accent:hover {
+      background: #059669;
+    }
+
+    .btn-outline {
+      background: white;
+      border-color: var(--border-color);
+      color: var(--text-main);
+    }
+    .btn-outline:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .btn-danger-outline {
+      background: white;
+      border-color: #fca5a5;
+      color: var(--danger);
+    }
+    .btn-danger-outline:hover {
+      background: #fef2f2;
+    }
+
+    main {
+      max-width: 1280px;
+      margin: 24px auto;
+      padding: 0 20px;
+    }
+
+    .tabs-nav {
+      display: flex;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+
+    .tab-btn {
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: 700;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      position: relative;
+      white-space: nowrap;
+      transition: color 0.2s;
+    }
+
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+    }
+
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--primary);
+      border-radius: 3px 3px 0 0;
+    }
+
+    .controls-panel {
+      background: white;
+      padding: 18px 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-color);
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 10px 40px 10px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border-color);
+      font-size: 15px;
+      font-family: inherit;
+      background: #f8fafc;
+      transition: all 0.2s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(0, 82, 180, 0.15);
+    }
+
+    .search-icon {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      pointer-events: none;
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-tag {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #f1f5f9;
+      color: var(--text-muted);
+      border: 1px solid #e2e8f0;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-tag:hover {
+      background: #e2e8f0;
+    }
+
+    .filter-tag.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .candidate-card {
+      background: white;
+      border-radius: var(--radius);
+      border: 1px solid #e2e8f0;
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      cursor: pointer;
+    }
+
+    .candidate-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+      border-color: #93c5fd;
+    }
+
+    .candidate-card.selected {
+      border: 2px solid var(--primary);
+      background: #f0f7ff;
+      box-shadow: 0 4px 12px rgba(0, 82, 180, 0.18);
+    }
+
+    .card-top {
+      position: relative;
+      height: 180px;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .candidate-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 0.3s;
+    }
+
+    .candidate-card:hover .candidate-img {
+      transform: scale(1.03);
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .badge-number {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(4px);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      z-index: 2;
+    }
+
+    .selected-ribbon {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: var(--success);
+      color: white;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      z-index: 2;
+    }
+
+    .candidate-card.selected .selected-ribbon {
+      display: flex;
+    }
+
+    .card-body {
+      padding: 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .candidate-name {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.3;
+    }
+
+    .candidate-role {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+      background: var(--primary-light);
+      padding: 2px 8px;
+      border-radius: 4px;
+      align-self: flex-start;
+    }
+
+    .candidate-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      flex: 1;
+      line-height: 1.4;
+    }
+
+    .card-footer {
+      padding: 12px 16px;
+      background: #f8fafc;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .candidate-card.selected .card-footer {
+      background: #e0f2fe;
+    }
+
+    .card-btn {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+      border: 1px solid var(--border-color);
+      background: white;
+      color: var(--text-main);
+      transition: all 0.2s;
+    }
+
+    .candidate-card.selected .card-btn {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #1e293b;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 999;
+      pointer-events: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      animation: modalIn 0.25s ease-out;
+    }
+
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h2 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-main);
+    }
+
+    .close-btn {
+      background: #f1f5f9;
+      border: none;
+      font-size: 18px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #f8fafc;
+      border-radius: 0 0 16px 16px;
+    }
+
+    .ballot-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    @media (max-width: 600px) {
+      .ballot-list {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .ballot-item {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      padding: 10px 14px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .ballot-number {
+      background: var(--primary);
+      color: white;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .ballot-info {
+      flex: 1;
+    }
+
+    .ballot-name {
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .ballot-role {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .sector-card {
+      background: white;
+      border-radius: var(--radius);
+      padding: 20px;
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 20px;
+    }
+
+    .sector-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sector-badge {
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--primary-light);
+      color: var(--primary);
+      padding: 2px 10px;
+      border-radius: 12px;
+    }
+
+    .names-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .name-pill {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    @media print {
+      body {
+        background: white;
+        padding-bottom: 0;
+      }
+      .sticky-bar, .controls-panel, .tabs-nav, header, .tracker-actions, .card-btn {
+        display: none !important;
+      }
+      .modal-overlay {
+        position: static !important;
+        background: none !important;
+        display: block !important;
+        padding: 0 !important;
+      }
+      .modal-content {
+        box-shadow: none !important;
+        border: none !important;
+        max-width: 100% !important;
+      }
+      .modal-header, .modal-footer, .close-btn {
+        display: none !important;
+      }
+      .print-only-header {
+        display: block !important;
+        text-align: center;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #000;
+        padding-bottom: 10px;
+      }
+      .ballot-list {
+        grid-template-columns: 1fr 1fr !important;
+      }
+    }
+
+    .print-only-header {
+      display: none;
+    }
+
+    .empty-selected {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-top">
+        <div class="brand">
+          <div class="brand-logo">מחל</div>
+          <div class="brand-text">
+            <h1>הפריימריז בליכוד 2026</h1>
+            <p>לוח הבחירה האישי — הרכב את רשימת 12 המועמדים שלך לרשימה הארצית</p>
+          </div>
+        </div>
+        <div class="rules-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          הוראות הצבעה: חובה לבחור עד 12 מועמדים ברשימה הארצית
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="sticky-bar">
+    <div class="sticky-container">
+      <div class="tracker-left">
+        <div class="counter-box">
+          <span>נבחרו:</span>
+          <div class="counter-value" id="selectedCountDisplay">0 / 12</div>
+        </div>
+        <div class="progress-wrapper">
+          <div class="progress-fill" id="progressBar"></div>
+        </div>
+      </div>
+      <div class="tracker-actions">
+        <button class="btn btn-outline" onclick="filterSelectedOnly()" id="viewSelectedBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          הצג נבחרים בלבד
+        </button>
+        <button class="btn btn-primary" onclick="openBallotModal()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          צפייה בפתק ההצבעה
+        </button>
+        <button class="btn btn-accent" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          הדפסה
+        </button>
+        <button class="btn btn-danger-outline" onclick="resetSelections()">
+          איפוס
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('national', this)">הרשימה הארצית (40 מועמדים)</button>
+      <button class="tab-btn" onclick="switchTab('districts', this)">מחוזות גיאוגרפיים (84 מועמדים)</button>
+      <button class="tab-btn" onclick="switchTab('reserved', this)">משבצות הבטחת ייצוג</button>
+      <button class="tab-btn" onclick="switchTab('secured', this)">שריונים בצמרת המפלגה</button>
+    </div>
+
+    <div id="tab-national">
+      <div class="controls-panel">
+        <div class="search-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="searchInput" placeholder="חיפוש מועמד לפי שם, תפקיד או רקע..." oninput="applyFilters()">
+        </div>
+        <div class="filter-tags">
+          <span style="font-size: 13px; font-weight: 700; margin-left: 6px;">סינון מהיר:</span>
+          <button class="filter-tag active" data-filter="all" onclick="setFilter('all', this)">הכל (40)</button>
+          <button class="filter-tag" data-filter="שרים וח"כים" onclick="setFilter('שרים וח"כים', this)">שרים וח"כים מכהנים</button>
+          <button class="filter-tag" data-filter="בכירים" onclick="setFilter('בכירים', this)">צמרת ההנהגה</button>
+          <button class="filter-tag" data-filter="נשים" onclick="setFilter('נשים', this)">נשים</button>
+          <button class="filter-tag" data-filter="מועמדים חדשים" onclick="setFilter('מועמדים חדשים', this)">מועמדים חדשים ופנים רעננות</button>
+        </div>
+      </div>
+
+      <div class="grid-container" id="candidatesGrid">
+
+        <div class="candidate-card" data-id="1" onclick="toggleCandidate(1)">
+          <div class="card-top">
+            <span class="badge-number">#1</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Amir_Ohana_-_Official_%28cropped%29.jpg/300px-Amir_Ohana_-_Official_%28cropped%29.jpg" alt="אמיר אוחנה" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אא</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אמיר אוחנה</div>
+            <div class="candidate-role">יו"ר הכנסת</div>
+            <div class="candidate-desc">לשעבר שר המשפטים והשר לביטחון פנים, סרן במילואים ועורך דין</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="2" onclick="toggleCandidate(2)">
+          <div class="card-top">
+            <span class="badge-number">#2</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Zeev_Elkin_2016.jpg/300px-Zeev_Elkin_2016.jpg" alt="זאב אלקין" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">זא</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">זאב אלקין</div>
+            <div class="candidate-role">שר וחבר כנסת</div>
+            <div class="candidate-desc">לשעבר שר הבינוי והשיכון, שר להשכלה גבוהה ויו"ר ועדת חוץ וביטחון</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="3" onclick="toggleCandidate(3)">
+          <div class="card-top">
+            <span class="badge-number">#3</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/David_Amsalem_2020.jpg/300px-David_Amsalem_2020.jpg" alt="דודי אמסלם" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">דא</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">דודי אמסלם</div>
+            <div class="candidate-role">שר במשרד המשפטים</div>
+            <div class="candidate-desc">השר לשיתוף פעולה אזורי, לשעבר יו"ר הקואליציה והשר המקשר</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="4" onclick="toggleCandidate(4)">
+          <div class="card-top">
+            <span class="badge-number">#4</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Avihai_Boaron.jpg/300px-Avihai_Boaron.jpg" alt="אביחי בוארון" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אביחי בוארון</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">מנהל מערך השטח של הליכוד, מייסד תנועת לביא ועמונה, עורך דין</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="5" onclick="toggleCandidate(5)">
+          <div class="card-top">
+            <span class="badge-number">#5</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/David_Bitan_2016.jpg/300px-David_Bitan_2016.jpg" alt="דוד ביטן" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">דב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">דוד ביטן</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">יו"ר ועדת הכלכלה, לשעבר יו"ר הקואליציה וסגן ראש עיריית ראשון לציון</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="6" onclick="toggleCandidate(6)">
+          <div class="card-top">
+            <span class="badge-number">#6</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Boaz_Bismuth_%28cropped%29.jpg/300px-Boaz_Bismuth_%28cropped%29.jpg" alt="בועז ביסמוט" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">בב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">בועז ביסמוט</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">לשעבר עורך ראשי ב'ישראל היום', שגריר ישראל במאוריטניה ועיתונאי</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="7" onclick="toggleCandidate(7)">
+          <div class="card-top">
+            <span class="badge-number">#7</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">אב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">איל בן פנחס</div>
+            <div class="candidate-role">מתמודד ארצי</div>
+            <div class="candidate-desc">פעיל תנועת הליכוד, יזם ואיש עסקים</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="8" onclick="toggleCandidate(8)">
+          <div class="card-top">
+            <span class="badge-number">#8</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">עב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עדי ברוך</div>
+            <div class="candidate-role">מתמודדת ארצית</div>
+            <div class="candidate-desc">פעילת תנועת הליכוד וההנהגה הצעירה</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="9" onclick="toggleCandidate(9)">
+          <div class="card-top">
+            <span class="badge-number">#9</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Nir_Barkat_2023_%28cropped%29.jpg/300px-Nir_Barkat_2023_%28cropped%29.jpg" alt="ניר ברקת" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">נב</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">ניר ברקת</div>
+            <div class="candidate-role">שר הכלכלה והתעשייה</div>
+            <div class="candidate-desc">לשעבר ראש עיריית ירושלים, יזם היי-טק, משקיע ומפקד פלוגה בצנחנים</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="10" onclick="toggleCandidate(10)">
+          <div class="card-top">
+            <span class="badge-number">#10</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Sasson_Guetta.jpg/300px-Sasson_Guetta.jpg" alt="ששון גואטה" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">שג</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">ששון גואטה</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">נציג מושבי הצפון, החקלאות וההתיישבות העובדת בגליל</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="11" onclick="toggleCandidate(11)">
+          <div class="card-top">
+            <span class="badge-number">#11</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tally_Gotliv_2023.jpg/300px-Tally_Gotliv_2023.jpg" alt="טלי גוטליב" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">טג</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">טלי גוטליב</div>
+            <div class="candidate-role">חברת כנסת</div>
+            <div class="candidate-desc">עורכת דין פלילית בכירה, חברת ועדת חוץ וביטחון וועדת חוקה</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="12" onclick="toggleCandidate(12)">
+          <div class="card-top">
+            <span class="badge-number">#12</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/May_Golan_2020.jpg/300px-May_Golan_2020.jpg" alt="מאי גולן" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">מג</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">מאי גולן</div>
+            <div class="candidate-role">השרה לשוויון חברתי</div>
+            <div class="candidate-desc">השרה לקידום מעמד האישה, פעילה חברתית מובילה מדרום תל אביב</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="13" onclick="toggleCandidate(13)">
+          <div class="card-top">
+            <span class="badge-number">#13</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Gila_Gamliel_2019.jpg/300px-Gila_Gamliel_2019.jpg" alt="גילה גמליאל" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">גג</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">גילה גמליאל</div>
+            <div class="candidate-role">שרת החדשנות, המדע והטכנולוגיה</div>
+            <div class="candidate-desc">לשעבר שרת המודיעין, השרה להגנת הסביבה ויו"ר התאחדות הסטודנטים</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="14" onclick="toggleCandidate(14)">
+          <div class="card-top">
+            <span class="badge-number">#14</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Uzi_Dayan_2011.jpg/300px-Uzi_Dayan_2011.jpg" alt="עוזי דיין" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">עד</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עוזי דיין</div>
+            <div class="candidate-role">אלוף במילואים</div>
+            <div class="candidate-desc">לשעבר סגן הרמטכ"ל, ראש המועצה לביטחון לאומי (מל"ל) ויו"ר מפעל הפיס</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="15" onclick="toggleCandidate(15)">
+          <div class="card-top">
+            <span class="badge-number">#15</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Avi_Dichter_2019.jpg/300px-Avi_Dichter_2019.jpg" alt="אבי דיכטר" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אד</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אבי דיכטר</div>
+            <div class="candidate-role">שר החקלאות וביטחון המזון</div>
+            <div class="candidate-desc">לשעבר ראש השב"כ, השר לביטחון פנים ויו"ר ועדת חוץ וביטחון</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="16" onclick="toggleCandidate(16)">
+          <div class="card-top">
+            <span class="badge-number">#16</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Dallal.jpg/300px-Eli_Dallal.jpg" alt="אלי דלל" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אד</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אלי דלל</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">לשעבר מ"מ וסגן ראש עיריית נתניה, מהנדס ומנהל פרויקטים תשתיות</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="17" onclick="toggleCandidate(17)">
+          <div class="card-top">
+            <span class="badge-number">#17</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Shalom_Danino.jpg/300px-Shalom_Danino.jpg" alt="שלום דנינו" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">שד</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">שלום דנינו</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">איש עסקים, יזם חברתי ונציג הנגב ועיירות הפיתוח</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="18" onclick="toggleCandidate(18)">
+          <div class="card-top">
+            <span class="badge-number">#18</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Amit_Halevi.jpg/300px-Amit_Halevi.jpg" alt="עמית הלוי" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">עה</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עמית הלוי</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">מייסד המכללה למדינאות, חבר ועדת חוץ וביטחון וועדת חוקה</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="19" onclick="toggleCandidate(19)">
+          <div class="card-top">
+            <span class="badge-number">#19</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nissim_Vaturi.jpg/300px-Nissim_Vaturi.jpg" alt="ניסים ואטורי" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">נו</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">ניסים ואטורי</div>
+            <div class="candidate-role">סגן יו"ר הכנסת</div>
+            <div class="candidate-desc">חבר כנסת ממושב אלוני הבשן ברמת הגולן, איש עסקים ופעיל ליכוד</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="20" onclick="toggleCandidate(20)">
+          <div class="card-top">
+            <span class="badge-number">#20</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Miki_Zohar_2020.jpg/300px-Miki_Zohar_2020.jpg" alt="מיקי זוהר" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">מז</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">מיקי זוהר</div>
+            <div class="candidate-role">שר התרבות והספורט</div>
+            <div class="candidate-desc">לשעבר יו"ר הקואליציה, מרכז סיעת הליכוד וסגן ראש עיריית קריית גת</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="21" onclick="toggleCandidate(21)">
+          <div class="card-top">
+            <span class="badge-number">#21</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Eli_Cohen_%28born_1972%29_2023.jpg/300px-Eli_Cohen_%28born_1972%29_2023.jpg" alt="אלי כהן" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אכ</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אלי כהן</div>
+            <div class="candidate-role">שר האנרגיה והתשתיות</div>
+            <div class="candidate-desc">לשעבר שר החוץ, שר המודיעין ושר הכלכלה והתעשייה, רו"ח</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="22" onclick="toggleCandidate(22)">
+          <div class="card-top">
+            <span class="badge-number">#22</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Almog_Cohen.jpg/300px-Almog_Cohen.jpg" alt="אלמוג כהן" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אכ</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אלמוג כהן</div>
+            <div class="candidate-role">סגן שר במשרד רה"מ</div>
+            <div class="candidate-desc">חבר כנסת, לוחם ומייסד 'הוועד להצלת הנגב', מגיבורי קרב אופקים</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="23" onclick="toggleCandidate(23)">
+          <div class="card-top">
+            <span class="badge-number">#23</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ofir_Katz_2020.jpg/300px-Ofir_Katz_2020.jpg" alt="אופיר כץ" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אכ</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אופיר כץ</div>
+            <div class="candidate-role">יו"ר הקואליציה</div>
+            <div class="candidate-desc">יו"ר סיעת הליכוד, יו"ר ועדת הכנסת, ממובילי החקיקה החברתית והלאומית</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="24" onclick="toggleCandidate(24)">
+          <div class="card-top">
+            <span class="badge-number">#24</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Yariv_Levin_1_%28cropped%29.jpg/300px-Yariv_Levin_1_%28cropped%29.jpg" alt="יריב לוין" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">יל</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">יריב לוין</div>
+            <div class="candidate-role">סגן רה"מ ושר המשפטים</div>
+            <div class="candidate-desc">לשעבר יו"ר הכנסת, שר התיירות ויו"ר הקואליציה, מוביל הרפורמה המשפטית</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="25" onclick="toggleCandidate(25)">
+          <div class="card-top">
+            <span class="badge-number">#25</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hanoch_Milwidsky.jpg/300px-Hanoch_Milwidsky.jpg" alt="חנוך מילביצקי" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">חמ</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">חנוך מילביצקי</div>
+            <div class="candidate-role">סגן יו"ר הכנסת</div>
+            <div class="candidate-desc">עורך דין, חבר ועדת חוקה וועדת כספים, לשעבר יו"ר סיעת הליכוד בפ"ת</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="26" onclick="toggleCandidate(26)">
+          <div class="card-top">
+            <span class="badge-number">#26</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Idit_Silman_2022.jpg/300px-Idit_Silman_2022.jpg" alt="עידית סילמן" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">עס</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עידית סילמן</div>
+            <div class="candidate-role">השרה להגנת הסביבה</div>
+            <div class="candidate-desc">לשעבר יו"ר הקואליציה ויו"ר ועדת הבריאות של הכנסת</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="27" onclick="toggleCandidate(27)">
+          <div class="card-top">
+            <span class="badge-number">#27</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Moshe_Saada.jpg/300px-Moshe_Saada.jpg" alt="משה סעדה" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">מס</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">משה סעדה</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">עורך דין, סגן מנהל המחלקה לחקירות שוטרים (מח"ש) לשעבר</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="28" onclick="toggleCandidate(28)">
+          <div class="card-top">
+            <span class="badge-number">#28</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">עע</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עפיף עבד</div>
+            <div class="candidate-role">מתמודד ארצי</div>
+            <div class="candidate-desc">איש ציבור ופעיל מרכזי בתנועת הליכוד</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="29" onclick="toggleCandidate(29)">
+          <div class="card-top">
+            <span class="badge-number">#29</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Eti_Atiya_2020.jpg/300px-Eti_Atiya_2020.jpg" alt="אתי עטיה" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אע</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אתי עטיה</div>
+            <div class="candidate-role">חברת כנסת</div>
+            <div class="candidate-desc">יו"ר ועדת הרווחה והבריאות לשעבר, מנהלת מטה התעשייה האווירית לשעבר</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="30" onclick="toggleCandidate(30)">
+          <div class="card-top">
+            <span class="badge-number">#30</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Tsega_Malku.jpg/300px-Tsega_Malku.jpg" alt="צגה מלקו" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">צמ</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">צגה מלקו</div>
+            <div class="candidate-role">אשת תקשורת וסופרת</div>
+            <div class="candidate-desc">מנהלת רשת א' בקול ישראל לשעבר, פעילה חברתית ומובילת קהילת עולי אתיופיה</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="31" onclick="toggleCandidate(31)">
+          <div class="card-top">
+            <span class="badge-number">#31</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">דק</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">דרור קאפח</div>
+            <div class="candidate-role">פובליציסט ופאנליסט</div>
+            <div class="candidate-desc">איש תקשורת, פרשן בערוץ 14 ופעיל ימין בולט</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="32" onclick="toggleCandidate(32)">
+          <div class="card-top">
+            <span class="badge-number">#32</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Yoav_Kisch_2020.jpg/300px-Yoav_Kisch_2020.jpg" alt="יואב קיש" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">יק</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">יואב קיש</div>
+            <div class="candidate-role">שר החינוך</div>
+            <div class="candidate-desc">השר המקשר בין הממשלה לכנסת, טייס קרב בחיל האוויר וקברניט באל על</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="33" onclick="toggleCandidate(33)">
+          <div class="card-top">
+            <span class="badge-number">#33</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">שק</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">שי קלך</div>
+            <div class="candidate-role">טייס קרב ופעיל חברתי</div>
+            <div class="candidate-desc">רב-סרן במילואים, מייסד תנועת 'נצח ישראל' ופובליציסט</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="34" onclick="toggleCandidate(34)">
+          <div class="card-top">
+            <span class="badge-number">#34</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Ariel_Kallner_2020.jpg/300px-Ariel_Kallner_2020.jpg" alt="אריאל קלנר" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אק</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אריאל קלנר</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">מהנדס תוכנה ותעשייה, מייסד ויו"ר פורום 'חזון לאומי' למנהיגות</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="35" onclick="toggleCandidate(35)">
+          <div class="card-top">
+            <span class="badge-number">#35</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shlomo_Karhi_2020.jpg/300px-Shlomo_Karhi_2020.jpg" alt="שלמה קרעי" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">שק</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">שלמה קרעי</div>
+            <div class="candidate-role">שר התקשורת</div>
+            <div class="candidate-desc">ד"ר להנדסת תעשייה וניהול, מרצה וחוקר אקדמי בתחומי מתמטיקה שימושית</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="36" onclick="toggleCandidate(36)">
+          <div class="card-top">
+            <span class="badge-number">#36</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Minister_Miri_Regev.jpg/300px-Minister_Miri_Regev.jpg" alt="מירי רגב" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">מר</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">מירי רגב</div>
+            <div class="candidate-role">שרת התחבורה והבטיחות בדרכים</div>
+            <div class="candidate-desc">תת-אלוף במילואים, לשעבר דוברת צה"ל ושרת התרבות והספורט</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="37" onclick="toggleCandidate(37)">
+          <div class="card-top">
+            <span class="badge-number">#37</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Keti_Shitrit_2020.jpg/300px-Keti_Shitrit_2020.jpg" alt="קטי שטרית" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">קש</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">קטי שטרית</div>
+            <div class="candidate-role">חברת כנסת</div>
+            <div class="candidate-desc">לשעבר יו"ר ועדת החינוך של הכנסת, אשת חינוך ומנהלת לשכות שרים</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="38" onclick="toggleCandidate(38)">
+          <div class="card-top">
+            <span class="badge-number">#38</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Amichai_Chikli_2022.jpg/300px-Amichai_Chikli_2022.jpg" alt="עמיחי שיקלי" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">עש</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">עמיחי שיקלי</div>
+            <div class="candidate-role">שר התפוצות והמאבק באנטישמיות</div>
+            <div class="candidate-desc">רס"ן במיל' בשייטת 13, מייסד המכינה הקדם-צבאית 'תבור'</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="39" onclick="toggleCandidate(39)">
+          <div class="card-top">
+            <span class="badge-number">#39</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <img class="candidate-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Osher_Shkalim.jpg/300px-Osher_Shkalim.jpg" alt="אושר שקלים" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          <div class="avatar-fallback" style="display: none;">אש</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אושר שקלים</div>
+            <div class="candidate-role">חבר כנסת</div>
+            <div class="candidate-desc">לשעבר סגן ראש עיריית חולון, יו"ר סיעת הליכוד ויועץ פרלמנטרי</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+
+        <div class="candidate-card" data-id="40" onclick="toggleCandidate(40)">
+          <div class="card-top">
+            <span class="badge-number">#40</span>
+            <div class="selected-ribbon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            
+          <div class="avatar-fallback">אש</div>
+        
+          </div>
+          <div class="card-body">
+            <div class="candidate-name">אלי שתיוי</div>
+            <div class="candidate-role">פעיל ציבור והסברה</div>
+            <div class="candidate-desc">אביו של עידן שתיוי ז"ל שנרצח בשבעה באוקטובר, פעיל הסברה לאומי</div>
+          </div>
+          <div class="card-footer">
+            <button class="card-btn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              הוסף לבחירה
+            </button>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+    <div id="tab-districts" style="display: none;">
+      <div class="sector-card" style="border-right: 4px solid var(--primary);">
+        <h3 style="font-size: 16px; margin-bottom: 8px;">ℹ️ הנחיות להצבעה במחוזות:</h3>
+        <p style="font-size: 14px; color: var(--text-muted);">כל מתפקד מצביע בנוסף לרשימה הארצית גם עבור <strong>נציג אחד בלבד</strong> במחוז הגיאוגרפי שאליו הוא משתייך לפי כתובת מגוריו בספר הבוחרים.</p>
+      </div>
+      <div id="districtsContainer"></div>
+    </div>
+
+    <div id="tab-reserved" style="display: none;">
+      <div class="sector-card" style="border-right: 4px solid var(--accent);">
+        <h3 style="font-size: 16px; margin-bottom: 8px;">ℹ️ משבצות הבטחת ייצוג בליכוד:</h3>
+        <p style="font-size: 14px; color: var(--text-muted);">משבצות ייעודיות לשילוב נשים חדשות, צעירים, עולים חדשים, אנשים עם מוגבלויות ונציגי המגזר הלא-יהודי ברשימת הליכוד לכנסת.</p>
+      </div>
+      <div id="reservedContainer"></div>
+    </div>
+
+    <div id="tab-secured" style="display: none;">
+      <div class="sector-card" style="border-right: 4px solid var(--success);">
+        <h3 style="font-size: 16px; margin-bottom: 8px;">👑 שריונים מאושרים ברשימה (אינם עומדים לבחירה בפריימריז):</h3>
+        <p style="font-size: 14px; color: var(--text-muted);">מועמדים ששוריינו מראש ברשימת הליכוד בהתאם להחלטות מוסדות התנועה והסכמים קואליציוניים.</p>
+      </div>
+      <div id="securedContainer"></div>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span id="toastMsg">הודעה</span>
+  </div>
+
+  <div class="modal-overlay" id="ballotModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>פתק ההצבעה שלי לרשימה הארצית</h2>
+        <button class="close-btn" onclick="closeBallotModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="print-only-header">
+          <h1 style="font-size: 22px; font-weight: 800;">פריימריז הליכוד 2026 — רשימת 12 המועמדים שלי</h1>
+          <p style="font-size: 14px; color: #555;">פתק סימון אישי לקלפי (רשימה ארצית)</p>
+        </div>
+        <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+          להלן רשימת המועמדים שבחרת (סך הכל <strong id="modalSelectedCount">0</strong> מתוך 12):
+        </p>
+        <div class="ballot-list" id="ballotListContainer">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="copyBallotToClipboard()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          העתק רשימה
+        </button>
+        <button class="btn btn-primary" onclick="window.print()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          הדפס פתק לקלפי
+        </button>
+        <button class="btn btn-outline" onclick="closeBallotModal()">סגור</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const candidates = [{"id": 1, "name": "אמיר אוחנה", "role": "יו\"ר הכנסת", "desc": "לשעבר שר המשפטים והשר לביטחון פנים, סרן במילואים ועורך דין", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Amir_Ohana_-_Official_%28cropped%29.jpg/300px-Amir_Ohana_-_Official_%28cropped%29.jpg", "initials": "אא"}, {"id": 2, "name": "זאב אלקין", "role": "שר וחבר כנסת", "desc": "לשעבר שר הבינוי והשיכון, שר להשכלה גבוהה ויו\"ר ועדת חוץ וביטחון", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Zeev_Elkin_2016.jpg/300px-Zeev_Elkin_2016.jpg", "initials": "זא"}, {"id": 3, "name": "דודי אמסלם", "role": "שר במשרד המשפטים", "desc": "השר לשיתוף פעולה אזורי, לשעבר יו\"ר הקואליציה והשר המקשר", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/David_Amsalem_2020.jpg/300px-David_Amsalem_2020.jpg", "initials": "דא"}, {"id": 4, "name": "אביחי בוארון", "role": "חבר כנסת", "desc": "מנהל מערך השטח של הליכוד, מייסד תנועת לביא ועמונה, עורך דין", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Avihai_Boaron.jpg/300px-Avihai_Boaron.jpg", "initials": "אב"}, {"id": 5, "name": "דוד ביטן", "role": "חבר כנסת", "desc": "יו\"ר ועדת הכלכלה, לשעבר יו\"ר הקואליציה וסגן ראש עיריית ראשון לציון", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/David_Bitan_2016.jpg/300px-David_Bitan_2016.jpg", "initials": "דב"}, {"id": 6, "name": "בועז ביסמוט", "role": "חבר כנסת", "desc": "לשעבר עורך ראשי ב'ישראל היום', שגריר ישראל במאוריטניה ועיתונאי", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Boaz_Bismuth_%28cropped%29.jpg/300px-Boaz_Bismuth_%28cropped%29.jpg", "initials": "בב"}, {"id": 7, "name": "איל בן פנחס", "role": "מתמודד ארצי", "desc": "פעיל תנועת הליכוד, יזם ואיש עסקים", "tags": ["מועמדים חדשים"], "img": "", "initials": "אב"}, {"id": 8, "name": "עדי ברוך", "role": "מתמודדת ארצית", "desc": "פעילת תנועת הליכוד וההנהגה הצעירה", "tags": ["מועמדים חדשים", "נשים"], "img": "", "initials": "עב"}, {"id": 9, "name": "ניר ברקת", "role": "שר הכלכלה והתעשייה", "desc": "לשעבר ראש עיריית ירושלים, יזם היי-טק, משקיע ומפקד פלוגה בצנחנים", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Nir_Barkat_2023_%28cropped%29.jpg/300px-Nir_Barkat_2023_%28cropped%29.jpg", "initials": "נב"}, {"id": 10, "name": "ששון גואטה", "role": "חבר כנסת", "desc": "נציג מושבי הצפון, החקלאות וההתיישבות העובדת בגליל", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Sasson_Guetta.jpg/300px-Sasson_Guetta.jpg", "initials": "שג"}, {"id": 11, "name": "טלי גוטליב", "role": "חברת כנסת", "desc": "עורכת דין פלילית בכירה, חברת ועדת חוץ וביטחון וועדת חוקה", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Tally_Gotliv_2023.jpg/300px-Tally_Gotliv_2023.jpg", "initials": "טג"}, {"id": 12, "name": "מאי גולן", "role": "השרה לשוויון חברתי", "desc": "השרה לקידום מעמד האישה, פעילה חברתית מובילה מדרום תל אביב", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/May_Golan_2020.jpg/300px-May_Golan_2020.jpg", "initials": "מג"}, {"id": 13, "name": "גילה גמליאל", "role": "שרת החדשנות, המדע והטכנולוגיה", "desc": "לשעבר שרת המודיעין, השרה להגנת הסביבה ויו\"ר התאחדות הסטודנטים", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Gila_Gamliel_2019.jpg/300px-Gila_Gamliel_2019.jpg", "initials": "גג"}, {"id": 14, "name": "עוזי דיין", "role": "אלוף במילואים", "desc": "לשעבר סגן הרמטכ\"ל, ראש המועצה לביטחון לאומי (מל\"ל) ויו\"ר מפעל הפיס", "tags": ["מועמדים חדשים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Uzi_Dayan_2011.jpg/300px-Uzi_Dayan_2011.jpg", "initials": "עד"}, {"id": 15, "name": "אבי דיכטר", "role": "שר החקלאות וביטחון המזון", "desc": "לשעבר ראש השב\"כ, השר לביטחון פנים ויו\"ר ועדת חוץ וביטחון", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/Avi_Dichter_2019.jpg/300px-Avi_Dichter_2019.jpg", "initials": "אד"}, {"id": 16, "name": "אלי דלל", "role": "חבר כנסת", "desc": "לשעבר מ\"מ וסגן ראש עיריית נתניה, מהנדס ומנהל פרויקטים תשתיות", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Eli_Dallal.jpg/300px-Eli_Dallal.jpg", "initials": "אד"}, {"id": 17, "name": "שלום דנינו", "role": "חבר כנסת", "desc": "איש עסקים, יזם חברתי ונציג הנגב ועיירות הפיתוח", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Shalom_Danino.jpg/300px-Shalom_Danino.jpg", "initials": "שד"}, {"id": 18, "name": "עמית הלוי", "role": "חבר כנסת", "desc": "מייסד המכללה למדינאות, חבר ועדת חוץ וביטחון וועדת חוקה", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Amit_Halevi.jpg/300px-Amit_Halevi.jpg", "initials": "עה"}, {"id": 19, "name": "ניסים ואטורי", "role": "סגן יו\"ר הכנסת", "desc": "חבר כנסת ממושב אלוני הבשן ברמת הגולן, איש עסקים ופעיל ליכוד", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Nissim_Vaturi.jpg/300px-Nissim_Vaturi.jpg", "initials": "נו"}, {"id": 20, "name": "מיקי זוהר", "role": "שר התרבות והספורט", "desc": "לשעבר יו\"ר הקואליציה, מרכז סיעת הליכוד וסגן ראש עיריית קריית גת", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Miki_Zohar_2020.jpg/300px-Miki_Zohar_2020.jpg", "initials": "מז"}, {"id": 21, "name": "אלי כהן", "role": "שר האנרגיה והתשתיות", "desc": "לשעבר שר החוץ, שר המודיעין ושר הכלכלה והתעשייה, רו\"ח", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Eli_Cohen_%28born_1972%29_2023.jpg/300px-Eli_Cohen_%28born_1972%29_2023.jpg", "initials": "אכ"}, {"id": 22, "name": "אלמוג כהן", "role": "סגן שר במשרד רה\"מ", "desc": "חבר כנסת, לוחם ומייסד 'הוועד להצלת הנגב', מגיבורי קרב אופקים", "tags": ["שרים וח\"כים", "מועמדים חדשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/Almog_Cohen.jpg/300px-Almog_Cohen.jpg", "initials": "אכ"}, {"id": 23, "name": "אופיר כץ", "role": "יו\"ר הקואליציה", "desc": "יו\"ר סיעת הליכוד, יו\"ר ועדת הכנסת, ממובילי החקיקה החברתית והלאומית", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Ofir_Katz_2020.jpg/300px-Ofir_Katz_2020.jpg", "initials": "אכ"}, {"id": 24, "name": "יריב לוין", "role": "סגן רה\"מ ושר המשפטים", "desc": "לשעבר יו\"ר הכנסת, שר התיירות ויו\"ר הקואליציה, מוביל הרפורמה המשפטית", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Yariv_Levin_1_%28cropped%29.jpg/300px-Yariv_Levin_1_%28cropped%29.jpg", "initials": "יל"}, {"id": 25, "name": "חנוך מילביצקי", "role": "סגן יו\"ר הכנסת", "desc": "עורך דין, חבר ועדת חוקה וועדת כספים, לשעבר יו\"ר סיעת הליכוד בפ\"ת", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hanoch_Milwidsky.jpg/300px-Hanoch_Milwidsky.jpg", "initials": "חמ"}, {"id": 26, "name": "עידית סילמן", "role": "השרה להגנת הסביבה", "desc": "לשעבר יו\"ר הקואליציה ויו\"ר ועדת הבריאות של הכנסת", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Idit_Silman_2022.jpg/300px-Idit_Silman_2022.jpg", "initials": "עס"}, {"id": 27, "name": "משה סעדה", "role": "חבר כנסת", "desc": "עורך דין, סגן מנהל המחלקה לחקירות שוטרים (מח\"ש) לשעבר", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/Moshe_Saada.jpg/300px-Moshe_Saada.jpg", "initials": "מס"}, {"id": 28, "name": "עפיף עבד", "role": "מתמודד ארצי", "desc": "איש ציבור ופעיל מרכזי בתנועת הליכוד", "tags": ["מועמדים חדשים"], "img": "", "initials": "עע"}, {"id": 29, "name": "אתי עטיה", "role": "חברת כנסת", "desc": "יו\"ר ועדת הרווחה והבריאות לשעבר, מנהלת מטה התעשייה האווירית לשעבר", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Eti_Atiya_2020.jpg/300px-Eti_Atiya_2020.jpg", "initials": "אע"}, {"id": 30, "name": "צגה מלקו", "role": "אשת תקשורת וסופרת", "desc": "מנהלת רשת א' בקול ישראל לשעבר, פעילה חברתית ומובילת קהילת עולי אתיופיה", "tags": ["מועמדים חדשים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Tsega_Malku.jpg/300px-Tsega_Malku.jpg", "initials": "צמ"}, {"id": 31, "name": "דרור קאפח", "role": "פובליציסט ופאנליסט", "desc": "איש תקשורת, פרשן בערוץ 14 ופעיל ימין בולט", "tags": ["מועמדים חדשים"], "img": "", "initials": "דק"}, {"id": 32, "name": "יואב קיש", "role": "שר החינוך", "desc": "השר המקשר בין הממשלה לכנסת, טייס קרב בחיל האוויר וקברניט באל על", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Yoav_Kisch_2020.jpg/300px-Yoav_Kisch_2020.jpg", "initials": "יק"}, {"id": 33, "name": "שי קלך", "role": "טייס קרב ופעיל חברתי", "desc": "רב-סרן במילואים, מייסד תנועת 'נצח ישראל' ופובליציסט", "tags": ["מועמדים חדשים"], "img": "", "initials": "שק"}, {"id": 34, "name": "אריאל קלנר", "role": "חבר כנסת", "desc": "מהנדס תוכנה ותעשייה, מייסד ויו\"ר פורום 'חזון לאומי' למנהיגות", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Ariel_Kallner_2020.jpg/300px-Ariel_Kallner_2020.jpg", "initials": "אק"}, {"id": 35, "name": "שלמה קרעי", "role": "שר התקשורת", "desc": "ד\"ר להנדסת תעשייה וניהול, מרצה וחוקר אקדמי בתחומי מתמטיקה שימושית", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7b/Shlomo_Karhi_2020.jpg/300px-Shlomo_Karhi_2020.jpg", "initials": "שק"}, {"id": 36, "name": "מירי רגב", "role": "שרת התחבורה והבטיחות בדרכים", "desc": "תת-אלוף במילואים, לשעבר דוברת צה\"ל ושרת התרבות והספורט", "tags": ["שרים וח\"כים", "נשים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Minister_Miri_Regev.jpg/300px-Minister_Miri_Regev.jpg", "initials": "מר"}, {"id": 37, "name": "קטי שטרית", "role": "חברת כנסת", "desc": "לשעבר יו\"ר ועדת החינוך של הכנסת, אשת חינוך ומנהלת לשכות שרים", "tags": ["שרים וח\"כים", "נשים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Keti_Shitrit_2020.jpg/300px-Keti_Shitrit_2020.jpg", "initials": "קש"}, {"id": 38, "name": "עמיחי שיקלי", "role": "שר התפוצות והמאבק באנטישמיות", "desc": "רס\"ן במיל' בשייטת 13, מייסד המכינה הקדם-צבאית 'תבור'", "tags": ["שרים וח\"כים", "בכירים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/Amichai_Chikli_2022.jpg/300px-Amichai_Chikli_2022.jpg", "initials": "עש"}, {"id": 39, "name": "אושר שקלים", "role": "חבר כנסת", "desc": "לשעבר סגן ראש עיריית חולון, יו\"ר סיעת הליכוד ויועץ פרלמנטרי", "tags": ["שרים וח\"כים"], "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Osher_Shkalim.jpg/300px-Osher_Shkalim.jpg", "initials": "אש"}, {"id": 40, "name": "אלי שתיוי", "role": "פעיל ציבור והסברה", "desc": "אביו של עידן שתיוי ז\"ל שנרצח בשבעה באוקטובר, פעיל הסברה לאומי", "tags": ["מועמדים חדשים"], "img": "", "initials": "אש"}];
+    const extraData = {"reserved": [{"category": "צעירים (עד גיל 35)", "quota": "משבצת מובטחת", "candidates": ["נתנאל אוחיון", "רם דויטש", "מאי הדר", "דרור לגאלי", "עידן מזוז", "דין מילוא", "מאיר עורקבי", "ויקטור שריקי"]}, {"category": "אישה חדשה", "quota": "משבצת מובטחת לנשים שלא כיהנו בכנסת", "candidates": ["קרן אטיאס בובליל", "חלי הולצמן", "אוסנת זוהר", "זני אלמז זרו", "סילבה מזרחי", "חיה מלול גז", "נורית מנחם", "מרה מרו סנבטו", "רות קבסה אברמזון", "נועה שושן ברסקין", "איריס שטגמן", "הילה שמואלי", "סמדר אתי תלמי"]}, {"category": "עולים חדשים", "quota": "משבצת מובטחת", "candidates": ["אברהם דז'ורייב", "גברה וורקו", "ויטלי חייקין", "פבל יליזרוב", "אדי כהן", "שלמה פריינטי", "קפרי יחיא"]}, {"category": "המגזר הלא-יהודי (דרוזים/בדואים/ערבים)", "quota": "משבצת מובטחת", "candidates": ["ראזי אבו כף", "סמיר זידאן", "מולא מולא (פטין מולא)", "אוסאמה נבואני", "איוב קרא", "שכיב שנאן"]}, {"category": "אדם עם מוגבלות", "quota": "משבצת מובטחת", "candidates": ["אהרון מיכאליס", "יהודה סושרד", "אלכס פרידמן", "אביחי שאשא", "שמעון שראל"]}], "districts": [{"name": "מחוז ירושלים, יש\"ע ושפלה", "candidates": ["מישאל בן עמי", "יואל בן-שושן", "יגאל ברנד", "יאיר גבאי", "גיל חדד", "טאו בריאן", "יונתן יוסף", "גרשון מסיקה", "ג'קי פינטו", "שבתאי קטש", "דביר שטריקר", "ארז תדמור"]}, {"name": "מחוז דן ותל אביב", "candidates": ["עומרי אקוניס", "קובי גבריאל", "דור חרלפ", "שלמה לרנר", "אורן מגנזי", "שלמה מוסלאי", "סיני קהת", "אלישיב רבין", "גל שבתאי", "עומרי שמחי"]}, {"name": "מחוז מישור החוף", "candidates": ["אלי אלוש", "שי גלילי", "נמרוד מדרר", "אבי מלכי", "אפי נוה", "ראובן עודד"]}, {"name": "מחוז נגב", "candidates": ["אלעד זמיר", "עזרא עוזר", "יוסי פיטוסי", "משה בנימין פרץ"]}, {"name": "מחוז גליל והעמקים", "candidates": ["שוקי יהושע אוחנה", "ליאור לסרי", "שריף פרס עבד", "משה פיניאן", "יאיר אדי פריימן"]}, {"name": "מחוז חיפה", "candidates": ["אייל אלי", "צביאל רובין"]}, {"name": "מועצות אזוריות", "candidates": ["רמי ברדוגו", "מטי יוגב", "דוד מגידיש", "שרון סעדה", "שי שוקרון", "קובי שמואל"]}], "secured": [{"name": "בנימין נתניהו", "role": "יו\"ר הליכוד ומועמד המפלגה לראשות הממשלה (מקום 1)"}, {"name": "ישראל כ\"ץ", "role": "שר הביטחון - שריון מפלגתי"}, {"name": "גדעון סער", "role": "שר החוץ - שריון מפלגתי"}, {"name": "חיים כץ", "role": "שר התיירות - שריון מפלגתי"}]};
+
+    let selectedIds = new Set();
+    let currentFilter = 'all';
+    let showSelectedOnlyMode = false;
+
+    function init() {
+      renderCandidates();
+      renderDistricts();
+      renderReserved();
+      renderSecured();
+      updateTracker();
+    }
+
+    function renderCandidates() {
+      const grid = document.getElementById('candidatesGrid');
+      if (!grid) return;
+      grid.innerHTML = '';
+
+      const searchEl = document.getElementById('searchInput');
+      const query = searchEl ? searchEl.value.trim().toLowerCase() : '';
+
+      let filtered = candidates.filter(function(c) {
+        const matchesQuery = !query || 
+          c.name.toLowerCase().includes(query) || 
+          c.role.toLowerCase().includes(query) || 
+          c.desc.toLowerCase().includes(query);
+
+        let matchesFilter = true;
+        if (currentFilter !== 'all') {
+          matchesFilter = c.tags && c.tags.includes(currentFilter);
+        }
+
+        let matchesSelected = true;
+        if (showSelectedOnlyMode) {
+          matchesSelected = selectedIds.has(c.id);
+        }
+
+        return matchesQuery && matchesFilter && matchesSelected;
+      });
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column: 1/-1;" class="empty-selected">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5" style="margin: 0 auto 12px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <h3>לא נמצאו מועמדים התואמים את החיפוש או הסינון</h3>
+            <p style="margin-top: 6px;">נסה לשנות את מילות החיפוש או לבטל את הסינון</p>
+          </div>
+        `;
+        return;
+      }
+
+      filtered.forEach(function(c) {
+        const isSelected = selectedIds.has(c.id);
+        const card = document.createElement('div');
+        card.className = 'candidate-card ' + (isSelected ? 'selected' : '');
+        card.onclick = function() { toggleCandidate(c.id); };
+
+        const imageHtml = c.img ? 
+          '<img class="candidate-img" src="' + c.img + '" alt="' + c.name + '" loading="lazy" onerror="this.style.display=\'none\'; this.nextElementSibling.style.display=\'flex\';"><div class="avatar-fallback" style="display: none;">' + c.initials + '</div>' : 
+          '<div class="avatar-fallback">' + c.initials + '</div>';
+
+        card.innerHTML = 
+          '<div class="card-top">' +
+            '<span class="badge-number">#' + c.id + '</span>' +
+            '<div class="selected-ribbon">' +
+              '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>' +
+            '</div>' +
+            imageHtml +
+          '</div>' +
+          '<div class="card-body">' +
+            '<div class="candidate-name">' + c.name + '</div>' +
+            '<div class="candidate-role">' + c.role + '</div>' +
+            '<div class="candidate-desc">' + c.desc + '</div>' +
+          '</div>' +
+          '<div class="card-footer">' +
+            '<button class="card-btn" type="button">' +
+              (isSelected ? 
+                '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> נבחר (לחץ להסרה)' : 
+                '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg> הוסף לבחירה'
+              ) +
+            '</button>' +
+          '</div>';
+
+        grid.appendChild(card);
+      });
+    }
+
+    function toggleCandidate(id) {
+      if (selectedIds.has(id)) {
+        selectedIds.delete(id);
+      } else {
+        if (selectedIds.size >= 12) {
+          showToast("⚠️ ניתן לבחור עד 12 מועמדים ברשימה הארצית בלבד! הסר מועמד כדי לבחור אחר.");
+          return;
+        }
+        selectedIds.add(id);
+      }
+      updateTracker();
+      renderCandidates();
+    }
+
+    function updateTracker() {
+      const count = selectedIds.size;
+      const countDisplay = document.getElementById('selectedCountDisplay');
+      if (countDisplay) {
+        countDisplay.textContent = count + ' / 12';
+        if (count === 12) {
+          countDisplay.classList.add('full');
+        } else {
+          countDisplay.classList.remove('full');
+        }
+      }
+
+      const pct = (count / 12) * 100;
+      const prog = document.getElementById('progressBar');
+      if (prog) prog.style.width = pct + '%';
+
+      const viewBtn = document.getElementById('viewSelectedBtn');
+      if (viewBtn) {
+        viewBtn.textContent = showSelectedOnlyMode ? ('הצג את כל המועמדים (' + candidates.length + ')') : ('הצג נבחרים בלבד (' + count + ')');
+      }
+    }
+
+    function setFilter(tag, el) {
+      document.querySelectorAll('.filter-tag').forEach(function(b) { b.classList.remove('active'); });
+      if (el) el.classList.add('active');
+      currentFilter = tag;
+      renderCandidates();
+    }
+
+    function applyFilters() {
+      renderCandidates();
+    }
+
+    function filterSelectedOnly() {
+      showSelectedOnlyMode = !showSelectedOnlyMode;
+      updateTracker();
+      renderCandidates();
+    }
+
+    function resetSelections() {
+      if (selectedIds.size === 0) return;
+      if (confirm('האם לאפס את כל המועמדים שבחרת?')) {
+        selectedIds.clear();
+        showSelectedOnlyMode = false;
+        updateTracker();
+        renderCandidates();
+        showToast('הבחירות אופסו בהצלחה');
+      }
+    }
+
+    function switchTab(tabId, el) {
+      document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+      if (el) el.classList.add('active');
+
+      const tabs = ['national', 'districts', 'reserved', 'secured'];
+      tabs.forEach(function(t) {
+        const elTab = document.getElementById('tab-' + t);
+        if (elTab) elTab.style.display = (t === tabId) ? 'block' : 'none';
+      });
+    }
+
+    function renderDistricts() {
+      const c = document.getElementById('districtsContainer');
+      if (!c || !extraData.districts) return;
+      c.innerHTML = extraData.districts.map(function(d) {
+        return '<div class="sector-card">' +
+          '<div class="sector-title">' +
+            '<span>📍 ' + d.name + '</span>' +
+            '<span class="sector-badge">' + d.candidates.length + ' מתמודדים</span>' +
+          '</div>' +
+          '<div class="names-pills">' +
+            d.candidates.map(function(name) { return '<span class="name-pill">' + name + '</span>'; }).join('') +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function renderReserved() {
+      const c = document.getElementById('reservedContainer');
+      if (!c || !extraData.reserved) return;
+      c.innerHTML = extraData.reserved.map(function(r) {
+        return '<div class="sector-card">' +
+          '<div class="sector-title">' +
+            '<span>⭐ ' + r.category + '</span>' +
+            '<span class="sector-badge">' + r.quota + ' (' + r.candidates.length + ' מתמודדים)</span>' +
+          '</div>' +
+          '<div class="names-pills">' +
+            r.candidates.map(function(name) { return '<span class="name-pill">' + name + '</span>'; }).join('') +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function renderSecured() {
+      const c = document.getElementById('securedContainer');
+      if (!c || !extraData.secured) return;
+      c.innerHTML = extraData.secured.map(function(s) {
+        return '<div class="sector-card" style="background: #f0fdf4; border-color: #bbf7d0;">' +
+          '<div style="font-size: 17px; font-weight: 800; color: #166534; margin-bottom: 4px;">' + s.name + '</div>' +
+          '<div style="font-size: 14px; color: #15803d; font-weight: 600;">' + s.role + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    function openBallotModal() {
+      const modal = document.getElementById('ballotModal');
+      const listContainer = document.getElementById('ballotListContainer');
+      const countEl = document.getElementById('modalSelectedCount');
+      if (countEl) countEl.textContent = selectedIds.size;
+
+      if (selectedIds.size === 0) {
+        listContainer.innerHTML = 
+          '<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: var(--text-muted);">' +
+            '<p style="font-size: 16px; font-weight: 600;">טרם בחרת מועמדים לרשימה הארצית</p>' +
+            '<p style="font-size: 14px; margin-top: 6px;">לחץ על כרטיס מועמד כדי להוסיפו לפתק הבחירה שלך (עד 12 מועמדים)</p>' +
+          '</div>';
+      } else {
+        const selectedList = candidates.filter(function(c) { return selectedIds.has(c.id); });
+        listContainer.innerHTML = selectedList.map(function(c, idx) {
+          return '<div class="ballot-item">' +
+            '<div class="ballot-number">' + (idx + 1) + '</div>' +
+            '<div class="ballot-info">' +
+              '<div class="ballot-name">' + c.name + '</div>' +
+              '<div class="ballot-role">' + c.role + '</div>' +
+            '</div>' +
+          '</div>';
+        }).join('');
+      }
+
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeBallotModal() {
+      const modal = document.getElementById('ballotModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function copyBallotToClipboard() {
+      if (selectedIds.size === 0) {
+        showToast('אין מועמדים להעתקה');
+        return;
+      }
+      const selectedList = candidates.filter(function(c) { return selectedIds.has(c.id); });
+      const lines = ['רשימת 12 המועמדים שלי בפריימריז הליכוד 2026:'];
+      selectedList.forEach(function(c, i) {
+        lines.push((i + 1) + '. ' + c.name + ' (' + c.role + ')');
+      });
+      const text = lines.join('\n');
+      
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function() {
+          showToast('הרשימה הועתקה ללוח בהצלחה!');
+        }).catch(function() {
+          showToast('שגיאה בהעתקה ללוח');
+        });
+      } else {
+        showToast('העתקה אינה נתמכת בדפדפן זה');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toastMsg');
+      if (!toast || !msgEl) return;
+      msgEl.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(function() {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+
+    window.onclick = function(event) {
+      const modal = document.getElementById('ballotModal');
+      if (event.target === modal) {
+        closeBallotModal();
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
+</body>
+</html>
