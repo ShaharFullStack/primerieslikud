@@ -5,7 +5,7 @@ import { FilterService } from './services/FilterService.js';
 import { renderTabsNav } from './components/TabsNavComponent.js';
 import { TabViewRenderer } from './components/TabViewComponent.js';
 import { renderDetailModalBody } from './components/DetailModalComponent.js';
-import { renderBallotBody, ballotAsText } from './components/BallotModalComponent.js';
+import { renderBallotBody, renderPrintableBallot, ballotAsText } from './components/BallotModalComponent.js';
 import { ToastComponent } from './components/ToastComponent.js';
 
 const appState = {
@@ -29,6 +29,7 @@ const el = {
   detailModalBody: document.getElementById('detailModalBody'),
   ballotModal: document.getElementById('ballotModal'),
   ballotContainer: document.getElementById('ballotContainer'),
+  printArea: document.getElementById('printArea'),
   toast: document.getElementById('toast'),
   toastMsg: document.getElementById('toastMsg'),
 };
@@ -65,17 +66,22 @@ function refreshResultsOnly() {
 }
 
 function updateTracker() {
-  const nationalGreen = markingService.greenCountForGroups(['national']);
+  // The national cap is shared by the 40 national-list candidates AND the
+  // representation-quota candidates (they run in the same vote — see
+  // MarkingService), so it's counted by capKey, not by the 'national' group alone.
+  const nationalGreen = markingService.greenCountForCapKey('national');
   el.selectedCountDisplay.textContent = `${nationalGreen} / ${NATIONAL_MAX}`;
   el.selectedCountDisplay.classList.toggle('full', nationalGreen === NATIONAL_MAX);
   el.progressBar.style.width = `${(nationalGreen / NATIONAL_MAX) * 100}%`;
 
   const districtsFilled = districtsMeta.filter((d) => markingService.greenCandidatesForCapKey(`district::${d.name}`).length > 0).length;
-  const reservedFilled = reservedMeta.filter((r) => markingService.greenCandidatesForCapKey(`reserved::${r.category}`).length > 0).length;
+  // Quota categories aren't a separate cap anymore, just informational: how many
+  // categories have at least one candidate you've already marked green.
+  const reservedFilled = reservedMeta.filter((r) => markingService.greenCountForGroupLabel(r.category) > 0).length;
 
   el.miniStats.innerHTML = `
     <span class="mini-stat ${districtsFilled > 0 ? 'done' : ''}">מחוז: ${districtsFilled > 0 ? '✓ נבחר' : 'טרם נבחר'}</span>
-    <span class="mini-stat ${reservedFilled > 0 ? 'done' : ''}">משבצות: ${reservedFilled}/${reservedMeta.length}</span>
+    <span class="mini-stat ${reservedFilled > 0 ? 'done' : ''}">משבצות מיוצגות: ${reservedFilled}/${reservedMeta.length}</span>
   `;
 }
 
@@ -128,6 +134,17 @@ function openBallotModal() {
 
 function closeBallotModal() {
   el.ballotModal.classList.remove('active');
+}
+
+function printBallot() {
+  el.printArea.innerHTML = `
+    <div class="print-header">
+      <h1>פריימריז הליכוד 2026 — פתק ההצבעה שלי</h1>
+      <p>רשימה אישית מסומנת "בטוח/ה מצביע/ה"</p>
+    </div>
+    ${renderPrintableBallot(markingService)}
+  `;
+  window.print();
 }
 
 function copyBallotToClipboard() {
@@ -204,7 +221,7 @@ function wireEvents() {
         resetSelections();
         break;
       case 'print':
-        window.print();
+        printBallot();
         break;
       default:
         break;

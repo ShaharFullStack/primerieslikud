@@ -2,11 +2,16 @@ export const NATIONAL_MAX = 12;
 
 /**
  * Owns the voter's personal tri-state marking (yes/maybe/no) for every
- * candidate and enforces the vote caps: up to NATIONAL_MAX green marks on
- * the national list, and one green mark per capKey elsewhere (one district
- * representative, one quota representative). The same rule applies no
- * matter which tab/view a candidate is rendered in, because it's derived
- * from the candidate's own capKey rather than from UI state.
+ * candidate and enforces the vote caps, mirroring how the real Likud
+ * primary ballot works: up to NATIONAL_MAX green marks shared across the
+ * national-list ballot (capKey 'national') — which also covers the
+ * representation-quota candidates, since they run in that same national
+ * vote and only get an automatic rank-floor if they don't place high
+ * enough on their own, not a separate ballot — and exactly one green mark
+ * per geographic district (capKey 'district::<name>'), which really is
+ * chosen on a separate ballot. The same rule applies no matter which
+ * tab/view a candidate is rendered in, because it's derived from the
+ * candidate's own capKey rather than from UI state.
  */
 export class MarkingService {
   constructor(candidates, storageService) {
@@ -43,8 +48,8 @@ export class MarkingService {
       const currentGreen = this.countGreenInCapKey(candidate.capKey, id);
       if (currentGreen >= candidate.capMax) {
         const reason =
-          candidate.group === 'national'
-            ? `⚠️ ניתן לסמן "בטוח מצביע" עד ${NATIONAL_MAX} מועמדים ברשימה הארצית. הסר סימון קיים כדי לבחור אחר.`
+          candidate.capKey === 'national'
+            ? `⚠️ ניתן לסמן "בטוח מצביע" עד ${NATIONAL_MAX} מועמדים בסך הכל ברשימה הארצית (כולל מועמדי משבצות הייצוג — הם חלק מאותה הצבעה). הסר סימון קיים כדי לבחור אחר.`
             : `⚠️ ניתן לסמן "בטוח מצביע" נציג/ה אחד/ת בלבד עבור ${candidate.groupLabel}. הסר את הסימון הקודם קודם.`;
         return { ok: false, reason };
       }
@@ -75,5 +80,14 @@ export class MarkingService {
 
   greenCandidatesForCapKey(capKey) {
     return this.candidates.filter((c) => c.capKey === capKey && this.markingOf(c.id) === 'yes');
+  }
+
+  greenCountForCapKey(capKey) {
+    return this.greenCandidatesForCapKey(capKey).length;
+  }
+
+  /** Informational only (no cap tied to this) — how many candidates sharing a groupLabel are marked green. */
+  greenCountForGroupLabel(groupLabel) {
+    return this.candidates.filter((c) => c.groupLabel === groupLabel && this.markingOf(c.id) === 'yes').length;
   }
 }

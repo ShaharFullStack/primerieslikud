@@ -41,7 +41,15 @@ export function renderDetailModalBody(candidate, marking) {
         <button class="detail-mark-btn maybe ${marking === 'maybe' ? 'active' : ''}" data-action="mark" data-id="${candidate.id}" data-value="maybe">🟡 שוקל/ת</button>
         <button class="detail-mark-btn no ${marking === 'no' ? 'active' : ''}" data-action="mark" data-id="${candidate.id}" data-value="no">🔴 בטוח/ה לא</button>
       </div>
-      ${candidate.capMax ? `<div class="detail-cap-note">מכסה: ${candidate.group === 'national' ? `עד ${NATIONAL_MAX} מועמדים ברשימה הארצית` : `נציג/ה אחד/ת בלבד עבור ${candidate.groupLabel}`}</div>` : ''}`;
+      ${
+        candidate.capMax
+          ? `<div class="detail-cap-note">${
+              candidate.capKey === 'national'
+                ? `נספר/ת יחד עם עד ${NATIONAL_MAX} מועמדים בסך הכל ברשימה הארצית${candidate.group === 'reserved' ? ' — הבחירה כאן היא אותה הצבעה, לא הצבעה נפרדת למשבצת' : ''}`
+                : `מכסה: נציג/ה אחד/ת בלבד עבור ${candidate.groupLabel} (הצבעה נפרדת)`
+            }</div>`
+          : ''
+      }`;
 
   const credit = candidate.imageCredit ? `<div class="detail-image-credit">${escapeHtml(candidate.imageCredit)}</div>` : '';
 

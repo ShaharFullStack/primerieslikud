@@ -1,6 +1,7 @@
 import { escapeHtml } from '../utils/format.js';
 import { renderGrid } from './CardComponent.js';
 import { TABS } from './TabsNavComponent.js';
+import { NATIONAL_MAX } from '../services/MarkingService.js';
 
 export const QUICK_TAGS = ['שרים וח"כים', 'בכירים', 'נשים', 'מועמדים חדשים'];
 
@@ -64,8 +65,16 @@ export class TabViewRenderer {
     root.querySelectorAll('[data-cap-badge]').forEach((el) => {
       const capKey = el.dataset.capBadge;
       const capMax = el.dataset.capMax;
-      const greenCount = this.markingService.greenCandidatesForCapKey(capKey).length;
+      const greenCount = this.markingService.greenCountForCapKey(capKey);
       el.textContent = `${greenCount}/${capMax} נבחר`;
+      el.classList.toggle('filled', greenCount > 0);
+    });
+
+    // Informational-only counts (e.g. quota categories) that don't enforce a cap of their own.
+    root.querySelectorAll('[data-info-badge]').forEach((el) => {
+      const groupLabel = el.dataset.infoBadge;
+      const greenCount = this.markingService.greenCountForGroupLabel(groupLabel);
+      el.textContent = greenCount > 0 ? `✓ ${greenCount} מסומנים` : '0 מסומנים';
       el.classList.toggle('filled', greenCount > 0);
     });
   }
@@ -94,8 +103,9 @@ export class TabViewRenderer {
     </div>`;
 
     const tagAttr = appState.tagFilter !== 'all' ? ` data-tag="${escapeHtml(appState.tagFilter)}"` : '';
+    const banner = `<div class="info-banner">🗳️ פתק אחד, עד ${NATIONAL_MAX} מועמדים בסך הכל. מועמדי משבצות הבטחת הייצוג (טאב נפרד) מתמודדים <strong>באותה הצבעה</strong> — אם תסמני/תסמן "בטוח/ה מצביע/ה" עבורם שם, זה נספר כאן.</div>`;
 
-    return `<div class="controls-panel">${searchBoxHtml(appState.searchQuery)}${filterTags}</div>
+    return `<div class="controls-panel">${searchBoxHtml(appState.searchQuery)}${filterTags}</div>${banner}
       <div class="grid-container" data-results data-groups="national"${tagAttr}></div>`;
   }
 
@@ -117,13 +127,13 @@ export class TabViewRenderer {
   }
 
   _reservedShell(appState) {
-    const banner = `<div class="info-banner">ℹ️ משבצות ייעודיות לשילוב נשים חדשות, צעירים, עולים חדשים, אנשים עם מוגבלויות ונציגי המגזר הלא-יהודי ברשימת הליכוד לכנסת. סמנ/י "בטוח/ה מצביע/ה" (ירוק) עבור נציג/ה אחד/ת בכל קטגוריה רלוונטית עבורך.</div>`;
+    const banner = `<div class="info-banner">ℹ️ משבצות ייעודיות לשילוב נשים חדשות, צעירים, עולים חדשים, אנשים עם מוגבלויות ונציגי המגזר הלא-יהודי ברשימת הליכוד לכנסת. <strong>זו לא הצבעה נפרדת:</strong> מועמדי המשבצות מתמודדים באותה הצבעה של הרשימה הארצית (סימון "בטוח/ה מצביע/ה" כאן נספר בתוך אותם ${NATIONAL_MAX} קולות, לא בנוסף להם) — הבטחת הייצוג עצמה (מיקום מובטח ברשימה אם אף מועמד/ת מהקבוצה לא דורג/ה גבוה מספיק בכוח הקולות) מופעלת אוטומטית בספירת המפלגה, לא על ידך.</div>`;
     const sections = this.reservedMeta
       .map(
         (r) => `<div class="section-block">
           <div class="section-head">
             <div class="section-title">⭐ ${escapeHtml(r.category)}</div>
-            <div class="section-meta"><span class="tag-pill" data-cap-badge="reserved::${escapeHtml(r.category)}" data-cap-max="1">0/1 נבחר</span><span>${escapeHtml(r.quota)}</span><span>${r.count} מתמודדים</span></div>
+            <div class="section-meta"><span class="tag-pill" data-info-badge="${escapeHtml(r.category)}">0 מסומנים</span><span>${escapeHtml(r.quota)}</span><span>${r.count} מתמודדים</span></div>
           </div>
           <div class="grid-container" data-results data-groups="reserved" data-group-label="${escapeHtml(r.category)}"></div>
         </div>`
